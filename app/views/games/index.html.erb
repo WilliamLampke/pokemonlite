@@ -1,0 +1,3 @@
+<h3>Welcome <%= @player.name %> are you ready to fight <%= @enemy.name %>? </h3>
+
+      <%= button_to "Battle!", "/fighters/#{@player.id}/games?enemy_id=#{@enemy.id}" , method: :post%>

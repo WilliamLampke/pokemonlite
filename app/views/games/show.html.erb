@@ -1,0 +1,20 @@
+<h2>TURN: <%= @game.turn_count %></h2>
+<h3> <%= @enemy.name %></h3>
+<p>HP: <%= @enemy.hitpoints %></p>
+<br>
+
+<br>
+<h2> <%= @player.name %></h2>
+<p>HP: <%= @player.hitpoints %></p>
+<% if @game.turn_count.odd? == true %>
+<%= form_with url: "/fighters/#{@player.id}/games/#{@game.id}", local: true, method: :patch do |form| %>
+  <% @player.spells.each do |spell| %>
+    <%= form.radio_button :spell, "#{spell.id}" %>
+    <%= form.label :spell_name, "#{spell.name}"%>
+    <p> <%= spell.description %></p>
+  <% end %>
+  <br>
+  <%= form.submit 'Cast' %>
+<% end %>
+<% end %>
+
